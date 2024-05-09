@@ -37,7 +37,10 @@ public class IndexController {
         studentMapper.delete(null);
 
         // 普通Bean
-        student.setName(env.getProperty("studentName")); // 每次都取新数据，方便证明自动更新启用成功
+        String studentName = env.getProperty("studentName");
+        if (studentName != null) {
+            student.setName(studentName); // 每次都取新数据，方便证明自动更新启用成功
+        }
         restResult.put("Student", student);
 
         // jdbcTemplate
